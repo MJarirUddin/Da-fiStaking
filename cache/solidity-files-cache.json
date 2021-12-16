@@ -1,0 +1,1136 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/contracts/interfaces/INetworkDemand.sol": {
+      "lastModificationDate": 1639567127382,
+      "contentHash": "a2e4e942426753e0fc3d768a1b7f479b",
+      "sourceName": "contracts/interfaces/INetworkDemand.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "0.8.0"
+      ],
+      "artifacts": [
+        "INetworkDemand"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/contracts/v2/StakingManagerV2.sol": {
+      "lastModificationDate": 1639567127382,
+      "contentHash": "0457b217c5c6fef034e5077fa238cef7",
+      "sourceName": "contracts/v2/StakingManagerV2.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
+        "openzeppelin-solidity/contracts/security/ReentrancyGuard.sol",
+        "openzeppelin-solidity/contracts/access/Ownable.sol",
+        "../interfaces/IStakingManager.sol",
+        "../TokenPool.sol",
+        "../interfaces/IPriceFeeds.sol",
+        "./StakingDatabaseV2.sol",
+        "../interfaces/IRebaseEngine.sol",
+        "../interfaces/INetworkDemand.sol"
+      ],
+      "versionPragmas": [
+        "0.8.0"
+      ],
+      "artifacts": [
+        "StakingManagerV2"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/node_modules/openzeppelin-solidity/contracts/token/ERC20/IERC20.sol": {
+      "lastModificationDate": 1639572033938,
+      "contentHash": "0eac3e1a83ee62326ca007811285b274",
+      "sourceName": "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC20"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/node_modules/openzeppelin-solidity/contracts/security/ReentrancyGuard.sol": {
+      "lastModificationDate": 1639572031430,
+      "contentHash": "53fbff678f378956efcb207fa748eaa6",
+      "sourceName": "openzeppelin-solidity/contracts/security/ReentrancyGuard.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ReentrancyGuard"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/node_modules/openzeppelin-solidity/contracts/access/Ownable.sol": {
+      "lastModificationDate": 1639572031298,
+      "contentHash": "4fe56b59ced59d87df6b796758f62895",
+      "sourceName": "openzeppelin-solidity/contracts/access/Ownable.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../utils/Context.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Ownable"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/contracts/interfaces/IStakingManager.sol": {
+      "lastModificationDate": 1639567127382,
+      "contentHash": "e1a320f736ee11db495d895f94a039cb",
+      "sourceName": "contracts/interfaces/IStakingManager.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol"
+      ],
+      "versionPragmas": [
+        "0.8.0"
+      ],
+      "artifacts": [
+        "IStakingManager"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/contracts/TokenPool.sol": {
+      "lastModificationDate": 1639567127382,
+      "contentHash": "0ace8d70b1fd355a15a2ded3f34a65ae",
+      "sourceName": "contracts/TokenPool.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "openzeppelin-solidity/contracts/access/Ownable.sol",
+        "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol"
+      ],
+      "versionPragmas": [
+        "0.8.0"
+      ],
+      "artifacts": [
+        "TokenPool"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/contracts/interfaces/IPriceFeeds.sol": {
+      "lastModificationDate": 1639567127382,
+      "contentHash": "18d21109328cf5404446f56c70797b7f",
+      "sourceName": "contracts/interfaces/IPriceFeeds.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "0.8.0"
+      ],
+      "artifacts": [
+        "IPriceFeeds"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/contracts/v2/StakingDatabaseV2.sol": {
+      "lastModificationDate": 1639567127382,
+      "contentHash": "5df17a44c92c956e5af0eaacc81ca9df",
+      "sourceName": "contracts/v2/StakingDatabaseV2.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "openzeppelin-solidity/contracts/access/Ownable.sol"
+      ],
+      "versionPragmas": [
+        "0.8.0"
+      ],
+      "artifacts": [
+        "StakingDatabaseV2"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/contracts/interfaces/IRebaseEngine.sol": {
+      "lastModificationDate": 1639567127382,
+      "contentHash": "3ff6896ec75e646c6d0ff987bab6203c",
+      "sourceName": "contracts/interfaces/IRebaseEngine.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "0.8.0"
+      ],
+      "artifacts": [
+        "IRebaseEngine"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/node_modules/openzeppelin-solidity/contracts/utils/Context.sol": {
+      "lastModificationDate": 1639572031430,
+      "contentHash": "851485d5b925529b1a2f34a0be077891",
+      "sourceName": "openzeppelin-solidity/contracts/utils/Context.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Context"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/contracts/v2/RebaseEngineV2.sol": {
+      "lastModificationDate": 1639567127382,
+      "contentHash": "5475ca24419678b9d413c898d3bd0537",
+      "sourceName": "contracts/v2/RebaseEngineV2.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "openzeppelin-solidity/contracts/access/Ownable.sol",
+        "../interfaces/IRebaseEngine.sol",
+        "../interfaces/INetworkDemand.sol",
+        "./StakingDatabaseV2.sol"
+      ],
+      "versionPragmas": [
+        "0.8.0"
+      ],
+      "artifacts": [
+        "RebaseEngineV2"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/contracts/v2/NetworkDemandV2.sol": {
+      "lastModificationDate": 1639567127382,
+      "contentHash": "6e03dcb817d75f14525e72d31ad343c8",
+      "sourceName": "contracts/v2/NetworkDemandV2.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
+        "openzeppelin-solidity/contracts/access/Ownable.sol",
+        "./INetworkDemandV2.sol",
+        "../interfaces/IPriceFeeds.sol",
+        "../interfaces/ITVLFeeds.sol"
+      ],
+      "versionPragmas": [
+        "0.8.0"
+      ],
+      "artifacts": [
+        "NetworkDemand"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/contracts/v2/INetworkDemandV2.sol": {
+      "lastModificationDate": 1639567127382,
+      "contentHash": "5ff6582aef535d593dff7d3ec64e721a",
+      "sourceName": "contracts/v2/INetworkDemandV2.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "0.8.0"
+      ],
+      "artifacts": [
+        "INetworkDemandV2"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/contracts/interfaces/ITVLFeeds.sol": {
+      "lastModificationDate": 1639567127382,
+      "contentHash": "6ae7e6f90c70edb8f8d37c39331f32e6",
+      "sourceName": "contracts/interfaces/ITVLFeeds.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "0.8.0"
+      ],
+      "artifacts": [
+        "ITVLFeeds"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/contracts/network demand/TVLFeeds.sol": {
+      "lastModificationDate": 1639567127382,
+      "contentHash": "7945b04e21a28ed4ea862f8c147deb79",
+      "sourceName": "contracts/network demand/TVLFeeds.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "openzeppelin-solidity/contracts/access/Ownable.sol",
+        "../interfaces/ITVLFeeds.sol"
+      ],
+      "versionPragmas": [
+        "0.8.0"
+      ],
+      "artifacts": [
+        "TVLFeeds"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/contracts/network demand/NetworkDemand.sol": {
+      "lastModificationDate": 1639567127382,
+      "contentHash": "27cc663d46e77c96d5488144058bfd50",
+      "sourceName": "contracts/network demand/NetworkDemand.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
+        "openzeppelin-solidity/contracts/access/Ownable.sol",
+        "../interfaces/INetworkDemand.sol",
+        "../interfaces/IPriceFeeds.sol",
+        "../interfaces/ITVLFeeds.sol"
+      ],
+      "versionPragmas": [
+        "0.8.0"
+      ],
+      "artifacts": [
+        "NetworkDemand"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/contracts/testing/MockPriceFeeds.sol": {
+      "lastModificationDate": 1639567127382,
+      "contentHash": "cc6a4ee4361b357ae40a0ec4293e537a",
+      "sourceName": "contracts/testing/MockPriceFeeds.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol",
+        "../interfaces/IPriceFeeds.sol"
+      ],
+      "versionPragmas": [
+        "0.8.0"
+      ],
+      "artifacts": [
+        "MockPriceFeeds"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/node_modules/@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol": {
+      "lastModificationDate": 1639572032390,
+      "contentHash": "b9be3f7aa79153708acdc3be6bd1cb35",
+      "sourceName": "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "AggregatorV3Interface"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/contracts/network demand/PriceFeeds.sol": {
+      "lastModificationDate": 1639567127382,
+      "contentHash": "28e4fcada795dcc6a91ddcd586106bf1",
+      "sourceName": "contracts/network demand/PriceFeeds.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol",
+        "../interfaces/IPriceFeeds.sol"
+      ],
+      "versionPragmas": [
+        "0.8.0"
+      ],
+      "artifacts": [
+        "PriceFeeds"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/contracts/StakingManagerV1.sol": {
+      "lastModificationDate": 1639567127382,
+      "contentHash": "457783078fe0c5649b86932bfb74fcd4",
+      "sourceName": "contracts/StakingManagerV1.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
+        "openzeppelin-solidity/contracts/security/ReentrancyGuard.sol",
+        "openzeppelin-solidity/contracts/access/Ownable.sol",
+        "./interfaces/IStakingManager.sol",
+        "./TokenPool.sol",
+        "./interfaces/IPriceFeeds.sol",
+        "./StakingDatabase.sol",
+        "./interfaces/IRebaseEngine.sol",
+        "./interfaces/INetworkDemand.sol"
+      ],
+      "versionPragmas": [
+        "0.8.0"
+      ],
+      "artifacts": [
+        "StakingManagerV1"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/contracts/StakingDatabase.sol": {
+      "lastModificationDate": 1639567127382,
+      "contentHash": "c0d93ea8702d1ef9de69beb983df567c",
+      "sourceName": "contracts/StakingDatabase.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "openzeppelin-solidity/contracts/access/Ownable.sol"
+      ],
+      "versionPragmas": [
+        "0.8.0"
+      ],
+      "artifacts": [
+        "StakingDatabase"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/contracts/rebase engine/RebaseEngine.sol": {
+      "lastModificationDate": 1639567127382,
+      "contentHash": "b3b0f511d5ab7e36820a38b3ae7383e4",
+      "sourceName": "contracts/rebase engine/RebaseEngine.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "openzeppelin-solidity/contracts/access/Ownable.sol",
+        "../interfaces/IRebaseEngine.sol",
+        "../interfaces/INetworkDemand.sol",
+        "../StakingDatabase.sol"
+      ],
+      "versionPragmas": [
+        "0.8.0"
+      ],
+      "artifacts": [
+        "RebaseEngine"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/contracts/network demand/DIAPriceFeeds.sol": {
+      "lastModificationDate": 1639567127382,
+      "contentHash": "c45761f88ca2698c2b9683422d012696",
+      "sourceName": "contracts/network demand/DIAPriceFeeds.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/IPriceFeeds.sol"
+      ],
+      "versionPragmas": [
+        "0.8.0"
+      ],
+      "artifacts": [
+        "DIAPriceFeed",
+        "IDIAOracle"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/contracts/testing/ERC677/ERC20Burnable.sol": {
+      "lastModificationDate": 1639567127382,
+      "contentHash": "8b5ca4daa8fdfaf6231d490a608eb6ef",
+      "sourceName": "contracts/testing/ERC677/ERC20Burnable.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "@openzeppelin/contracts/access/Ownable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ERC20",
+        "ERC20Burnable",
+        "IERC20Metadata"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+      "lastModificationDate": 1639572027566,
+      "contentHash": "0eac3e1a83ee62326ca007811285b274",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC20"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/node_modules/@openzeppelin/contracts/access/Ownable.sol": {
+      "lastModificationDate": 1639572016221,
+      "contentHash": "4fe56b59ced59d87df6b796758f62895",
+      "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../utils/Context.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Ownable"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/node_modules/@openzeppelin/contracts/utils/Context.sol": {
+      "lastModificationDate": 1639572016269,
+      "contentHash": "851485d5b925529b1a2f34a0be077891",
+      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Context"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/contracts/testing/ERC677/ERC677.sol": {
+      "lastModificationDate": 1639567127382,
+      "contentHash": "3e244af0cf1808a38ff46bfbc37e1aa8",
+      "sourceName": "contracts/testing/ERC677/ERC677.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./ERC20Burnable.sol",
+        "./IERC677Receiver.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ERC677"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/contracts/testing/ERC677/IERC677Receiver.sol": {
+      "lastModificationDate": 1639567127382,
+      "contentHash": "8a50f229fab016d0faa6f91cb4ad34c5",
+      "sourceName": "contracts/testing/ERC677/IERC677Receiver.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC677Receiver"
+      ]
+    },
+    "/home/jariruddin/BlockApex-Linux/dDAFI-testing/contracts/testing/MockToken.sol": {
+      "lastModificationDate": 1639567127382,
+      "contentHash": "cdde587f1abb4d61853f5a5514db3f13",
+      "sourceName": "contracts/testing/MockToken.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./ERC677/ERC677.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "MockToken"
+      ]
+    }
+  }
+}
