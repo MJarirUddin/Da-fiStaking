@@ -24,5 +24,6 @@
     "typechain": "^5.1.2",
     "typescript": "^4.3.5",
     "truffle-contract-size": "^2.0.1"
-  }
+  },
+  "dependencies": {}
 }

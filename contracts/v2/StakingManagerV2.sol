@@ -1,42 +1,41 @@
 // SPDX-License-Identifier: GNU GPLv3
 pragma solidity 0.8.0;
 
-import "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol";
-import "openzeppelin-solidity/contracts/security/ReentrancyGuard.sol";
-import "openzeppelin-solidity/contracts/access/Ownable.sol";
-import "../interfaces/IStakingManager.sol";
-import "../TokenPool.sol";
-import "../interfaces/IPriceFeeds.sol";
-import "./StakingDatabaseV2.sol";
-import "../interfaces/IRebaseEngine.sol";
-import "../interfaces/INetworkDemand.sol";
+import "/home/jariruddin/BlockApex-Linux/dDAFI-testing/node_modules/openzeppelin-solidity/contracts/token/ERC20/IERC20.sol";
+import "/home/jariruddin/BlockApex-Linux/dDAFI-testing/node_modules/openzeppelin-solidity/contracts/security/ReentrancyGuard.sol";
+import "/home/jariruddin/BlockApex-Linux/dDAFI-testing/node_modules/openzeppelin-solidity/contracts/access/Ownable.sol";
+import "./interfaces/IStakingManager.sol";
+import "./TokenPool.sol";
+import "./interfaces/IPriceFeeds.sol";
+import "./StakingDatabase.sol";
+import "./interfaces/IRebaseEngine.sol";
+import "./interfaces/INetworkDemand.sol";
 
 contract StakingManagerV2 is IStakingManager, Ownable, ReentrancyGuard {
 
     IERC20 public immutable stakingToken;
-    StakingDatabaseV2 private database;
+    StakingDatabase private database;
     IRebaseEngine private rebaseEngine;
     INetworkDemand private networkDemand;
 
     TokenPool private stakingPool;
     TokenPool private distributionPool;
 
-    bool STAKING_ON;
+    bool public STAKING_ON;
     bool UNSTAKING_ON;
 
-    event STAKED(address user, uint amount, uint timestamp, uint currentlStakedAmount, uint lastAccumulatedPoolWeight, uint totalUnclaimed, uint lastAccumulatedFeeWeight);
-    event UNSTAKED(address user, uint amount, uint timestamp, uint currentlStakedAmount, uint lastAccumulatedPoolWeight, uint totalUnclaimed, uint lastAccumulatedFeeWeight);
-    event REWARD_DISBURSED(address user, uint amount, uint timestamp, uint currentlStakedAmount, uint lastAccumulatedPoolWeight, uint totalUnclaimed, uint lastAccumulatedFeeWeight);
+    event STAKED(address user, uint amount, uint timestamp, uint currentlStakedAmount, uint lastAccumulatedPoolWeight, uint totalUnclaimed);
+    event UNSTAKED(address user, uint amount, uint timestamp, uint currentlStakedAmount, uint lastAccumulatedPoolWeight, uint totalUnclaimed);
+    event REWARD_DISBURSED(address user, uint amount, uint timestamp, uint currentlStakedAmount, uint lastAccumulatedPoolWeight, uint totalUnclaimed);
 
     bool INITIALIZED;
 
     modifier stakeChecks(address user, uint amount) {
         require(STAKING_ON, "Staking is not allowed right now");
         require(amount > 0, "Invalid amount to stake");
-        Stake memory _userStake = database.getUserStake(user);
-
-        require(_userStake.amount + amount >= database.getMinimumStakeAmount(), "Please try a higher value to stake");
-
+        if (!database.userExists(user)) {// If new user then apply the minimum stake amount rule
+            require(amount >= database.getMinimumStakeAmount(), "Please try a higher value to stake");
+        }
         _;
     }
 
@@ -52,7 +51,7 @@ contract StakingManagerV2 is IStakingManager, Ownable, ReentrancyGuard {
         stakingToken = _stakingToken;
     }
 
-    function initialize(StakingDatabaseV2 _database, IRebaseEngine _rebaseEngine, INetworkDemand _networkDemand, TokenPool _distributionPool,
+    function initialize(StakingDatabase _database, IRebaseEngine _rebaseEngine, INetworkDemand _networkDemand, TokenPool _distributionPool,
         uint _minimumStakeDays, uint _minimumStakeAmount, uint _maxDAFI, uint8 _rewardFee, uint durationInDays) external onlyOwner {
 
         require(!INITIALIZED, "Staking manager can only be initialized once");
@@ -76,7 +75,7 @@ contract StakingManagerV2 is IStakingManager, Ownable, ReentrancyGuard {
 
         Stake memory _userStake = database.getUserStake(msg.sender);
 
-        emit STAKED(msg.sender, amount, block.timestamp, _userStake.amount, _userStake.lastStakingAccumulatedWeight, _userStake.totalUnclaimed, _userStake.lastAccumulatedFeeWeight);
+        emit STAKED(msg.sender, amount, block.timestamp, _userStake.amount, _userStake.lastStakingAccumulatedWeight,  _userStake.totalUnclaimed);
     }
 
     function stakeFor(address user, uint amount) external override nonReentrant stakeChecks(user, amount) {
@@ -88,7 +87,7 @@ contract StakingManagerV2 is IStakingManager, Ownable, ReentrancyGuard {
 
         Stake memory _userStake = database.getUserStake(user);
 
-        emit STAKED(user, amount, block.timestamp, _userStake.amount, _userStake.lastStakingAccumulatedWeight, _userStake.totalUnclaimed, _userStake.lastAccumulatedFeeWeight);
+        emit STAKED(user, amount, block.timestamp, _userStake.amount, _userStake.lastStakingAccumulatedWeight, _userStake.totalUnclaimed);
     }
 
     function unstake(uint amount) external override nonReentrant unstakeAndClaimChecks {
@@ -105,7 +104,7 @@ contract StakingManagerV2 is IStakingManager, Ownable, ReentrancyGuard {
 
         Stake memory _userStake = database.getUserStake(msg.sender);
 
-        emit UNSTAKED(msg.sender, amount, block.timestamp, _userStake.amount, _userStake.lastStakingAccumulatedWeight, _userStake.totalUnclaimed, _userStake.lastAccumulatedFeeWeight);
+        emit UNSTAKED(msg.sender, amount, block.timestamp, _userStake.amount, _userStake.lastStakingAccumulatedWeight, _userStake.totalUnclaimed);
     }
 
     function claimRewards(bool partialClaim, uint amount) external override nonReentrant unstakeAndClaimChecks {
@@ -117,7 +116,7 @@ contract StakingManagerV2 is IStakingManager, Ownable, ReentrancyGuard {
         Stake memory userStake = database.getUserStake(msg.sender);
 
         emit REWARD_DISBURSED(msg.sender, rewardDisbursed, block.timestamp, userStake.amount, userStake.lastStakingAccumulatedWeight,
-            userStake.totalUnclaimed, userStake.lastAccumulatedFeeWeight);
+            userStake.totalUnclaimed);
     }
 
     function enableStaking() external onlyOwner {
@@ -145,7 +144,6 @@ contract StakingManagerV2 is IStakingManager, Ownable, ReentrancyGuard {
     }
 
     function updateProgramDuration(uint _newDurationInDays) external onlyOwner {
-        rebaseEngine.rebasePool();
         database.setProgramDuration(_newDurationInDays * 1 days);
     }
 
@@ -156,7 +154,6 @@ contract StakingManagerV2 is IStakingManager, Ownable, ReentrancyGuard {
 
         database.setProgramDuration(_newDurationInDays * 1 days);
         database.setMaxDAFI(_maxDAFI);
-        rebaseEngine.rebasePool();
     }
 
     function updateRewardFees(uint8 newPercentage) external onlyOwner {
@@ -165,7 +162,6 @@ contract StakingManagerV2 is IStakingManager, Ownable, ReentrancyGuard {
     }
 
     function updateMaxDAFI(uint maxDAFI) external onlyOwner {
-        rebaseEngine.rebasePool();
         database.setMaxDAFI(maxDAFI);
     }
 
@@ -224,7 +220,6 @@ contract StakingManagerV2 is IStakingManager, Ownable, ReentrancyGuard {
         uint rewardToDisburse = rewardPlusFeeBal - fee;
 
         database.addToFeesDeposited(fee);
-        database.addToTotalFeesCollected(fee);
         database.addTodDAFIBurned(rewardDF);
 
         if (rewardToDisburse > 0) {
@@ -241,5 +236,4 @@ contract StakingManagerV2 is IStakingManager, Ownable, ReentrancyGuard {
         database.subPoolTotalStaked(unStakingAmount);
         database.updateStakeAmount(user, userStake.amount - unStakingAmount);
     }
-
 }
