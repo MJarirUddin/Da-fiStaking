@@ -73,7 +73,7 @@ contract RebaseEngine is IRebaseEngine, Ownable {
         }
 
         emit CustomLog(
-            'fialed here at md, pd',
+            'The check fails at ProgDur being less than the difference',
             database.getProgramDuration(),
             (maxTimestampForCalc - database.getStakingStartTime())
         );

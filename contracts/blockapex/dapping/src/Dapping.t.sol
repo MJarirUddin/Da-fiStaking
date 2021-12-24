@@ -30,4 +30,11 @@ contract DappingTest is DSTest, Dapping {
         emit log_named_uint('this is MaxDafi', MaxDafi);
         emit log_named_uint('this is TdDafiDist', TdDafiDist);
     }
+
+    // Checking monotonous fee weight and pool weight
+    // todo: noted = record currPoolW, currFeeW, accPoolW, accfeeW
+    // todo: call = calling stake and unstake
+    // todo: push = push to array the `noted` after each `call`
+
+
 }
