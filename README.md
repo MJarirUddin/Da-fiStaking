@@ -13,3 +13,4 @@ copy the account address from dapp testnet terminal to ETH_FROM=[ACCOUNT-ADDRESS
 go to contracts/blockapex/dapping/ from another terminal;
 
 run `./test.sh`
+resolve errors of imports by specifying correct (absolute paths) then run `./test.sh` from the same terminal location
