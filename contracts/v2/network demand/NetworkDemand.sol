@@ -1,8 +1,10 @@
 // SPDX-License-Identifier: GNU GPLv3
 pragma solidity 0.8.0;
 
-import "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol";
-import "openzeppelin-solidity/contracts/access/Ownable.sol";
+import "/home/jariruddin/BlockApex-Linux/dDAFI-testing/node_modules/openzeppelin-solidity/contracts/token/ERC20/IERC20.sol";
+import "/home/jariruddin/BlockApex-Linux/dDAFI-testing/node_modules/openzeppelin-solidity/contracts/access/Ownable.sol";
+// import "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol";
+// import "openzeppelin-solidity/contracts/access/Ownable.sol";
 import '../interfaces/INetworkDemand.sol';
 import "../interfaces/IPriceFeeds.sol";
 import "../interfaces/ITVLFeeds.sol";

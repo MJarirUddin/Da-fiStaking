@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: GNU GPLv3
 pragma solidity 0.8.0;
 
-import "openzeppelin-solidity/contracts/access/Ownable.sol";
+// import "openzeppelin-solidity/contracts/access/Ownable.sol";
+import "../../../node_modules/openzeppelin-solidity/contracts/access/Ownable.sol";
 import "../interfaces/ITVLFeeds.sol";
 
 /*

@@ -2,6 +2,7 @@
 pragma solidity 0.8.0;
 
 import '/home/jariruddin/BlockApex-Linux/dDAFI-testing/node_modules/openzeppelin-solidity/contracts/access/Ownable.sol';
+// import "openzeppelin-solidity/contracts/access/Ownable.sol";
 import '../interfaces/IRebaseEngine.sol';
 import '../interfaces/INetworkDemand.sol';
 import '../StakingDatabase.sol';
@@ -58,21 +59,26 @@ contract RebaseEngine is IRebaseEngine, Ownable {
      */
     uint256 public MAX_DAFI;
     uint256 public totaldDAFIDistributed;
-    event CustomLog(string, uint256, uint256);
+    event Property1Log(string, uint256, uint256);
+
+    uint256 public currentFeeWeight;
+    uint256 public currentPoolWeight;
 
     function _rebasePool() internal {
         Pool memory pool = database.getPool();
         uint256 maxTimestampForCalc;
 
-        if (database.isProgramEnded() && pool.lastUpdatedOn > database.getProgramEndedAt()) {
+        uint256 programEndedAt = database.getStakingStartTime() + database.getProgramDuration() - 1;
+
+        if (pool.lastUpdatedOn >= programEndedAt) {
             return;
-        } else if (database.isProgramEnded() && pool.lastUpdatedOn < database.getProgramEndedAt()) {
-            maxTimestampForCalc = database.getProgramEndedAt();
+        } else if (pool.lastUpdatedOn < programEndedAt && block.timestamp > programEndedAt) {
+            maxTimestampForCalc = programEndedAt;
         } else {
             maxTimestampForCalc = block.timestamp;
         }
 
-        emit CustomLog(
+        emit Property1Log(
             'The check fails at ProgDur being less than the difference',
             database.getProgramDuration(),
             (maxTimestampForCalc - database.getStakingStartTime())
@@ -89,8 +95,6 @@ contract RebaseEngine is IRebaseEngine, Ownable {
 
         totaldDAFIDistributed = database.getdDAFIDistributed() + dDAFIDistributedCurrent;
 
-        // assert(MAX_DAFI >= totaldDAFIDistributed);
-
         database.setdDAFIDistributed(totaldDAFIDistributed);
 
         uint256 MDICurrent = (MAX_DAFI - totaldDAFIDistributed) /
@@ -100,9 +104,9 @@ contract RebaseEngine is IRebaseEngine, Ownable {
 
         uint256 totalStaked = database.getTotalStaked();
 
-        uint256 currentPoolWeight = totalStaked > 0 ? ((MDICurrent * elapsedTime * EIGHT_DECIMALS) / totalStaked) : 0;
+        currentPoolWeight = totalStaked > 0 ? ((MDICurrent * elapsedTime * EIGHT_DECIMALS) / totalStaked) : 0;
 
-        uint256 currentFeeWeight = totalStaked > 0 ? ((database.getFeesDeposited() * EIGHT_DECIMALS) / totalStaked) : 0;
+        currentFeeWeight = totalStaked > 0 ? ((database.getFeesDeposited() * EIGHT_DECIMALS) / totalStaked) : 0;
 
         database.setFeesDeposited(0); // Setting it zero as fees deposited is incorporated in Fee Weight
 

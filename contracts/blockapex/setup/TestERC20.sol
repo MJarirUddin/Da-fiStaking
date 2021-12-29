@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.7.6;
 
+// import "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol";
 import "../../../node_modules/openzeppelin-solidity/contracts/token/ERC20/IERC20.sol";
 
 contract TestERC20 is IERC20 {
@@ -13,9 +14,9 @@ contract TestERC20 is IERC20 {
     string private _name;
     string private _symbol;
 
-    constructor(address mintTo, uint256 amountToMintTo) {
-        _mint(mintTo, amountToMintTo);
-    }
+    // constructor(address mintTo, uint256 amountToMintTo) {
+    //     _mint(mintTo, amountToMintTo);
+    // }
 
     function totalSupply() public view virtual override returns (uint256) {
         return _totalSupply;
@@ -73,7 +74,7 @@ contract TestERC20 is IERC20 {
         emit Transfer(sender, recipient, amount);
     }
 
-    function _mint(address account, uint256 amount) internal virtual {
+    function _mint(address account, uint256 amount) public virtual {
         require(account != address(0), 'ERC20: mint to the zero address');
 
         _totalSupply += amount;

@@ -2,46 +2,126 @@
 pragma solidity =0.8.0;
 
 import './SetupToken.sol';
-import "/home/jariruddin/BlockApex-Linux/dDAFI-testing/contracts/v2/interfaces/ITVLFeeds.sol";
-import '/home/jariruddin/BlockApex-Linux/dDAFI-testing/contracts/v2/StakingManagerV2.sol';
 import '../../../contracts/v2/rebase engine/RebaseEngine.sol';
+import '../../../contracts/v2/network demand/NetworkDemand.sol';
+import '/home/jariruddin/BlockApex-Linux/dDAFI-testing/contracts/v2/StakingManagerV2.sol';
+// import '../../../contracts/v2/StakingManagerV2.sol';
 
 contract SetupContracts {
-    StakingDatabase public db;
-    StakingManagerV2 public smgr;
-    RebaseEngine public rebaseEngine;
+    PriceFeed public priceFeed;
+    TVLFeed public tvlFeed;
 
     TestERC20 token;
-    SetupToken setupToken;
 
-    constructor(address mintTo) {
-        
-        setupToken = new SetupToken(mintTo);
-        
-        token = setupToken.token();
+    NetworkDemand public networkDemand;
+    StakingDatabase public database;
+    RebaseEngine public rebaseEngine;
+    StakingManagerV2 public stakingManager;
+    TokenPool public distPool;
 
-        smgr = new StakingManagerV2(token);
-        
-        db = new StakingDatabase();
-        rebaseEngine = new RebaseEngine(db);
-
-        rebaseEngine.addWhitelist(address(this));
-        db.addWhitelist(address(rebaseEngine));
-        db.addWhitelist(address(this));        
+    constructor(TestERC20 _token) {
+        token = _token;
+        initAll();
+        whiteListing();
+        enableAndApprove();
     }
 
-    function setupDB(
-        uint256 _maxDAFI, uint256 pd
+    /**================================== SETUP ==================================*/
+
+    function initAll() internal {
+        priceFeed = new PriceFeed();
+        tvlFeed = new TVLFeed();
+
+        distPool = new TokenPool(token);
+        networkDemand = new NetworkDemand(token, priceFeed, tvlFeed);
+        database = new StakingDatabase();
+        rebaseEngine = new RebaseEngine(database);
+        stakingManager = new StakingManagerV2(token, database, rebaseEngine, networkDemand, distPool);
+    }
+
+    function whiteListing() internal {
+        distPool.addWhitelist(address(stakingManager));
+
+        networkDemand.addWhitelist(address(stakingManager));
+        networkDemand.addWhitelist(address(rebaseEngine));
+
+        database.addWhitelist(address(stakingManager));
+        database.addWhitelist(address(rebaseEngine));
+        database.addWhitelist(address(this));
+
+        rebaseEngine.addWhitelist(address(stakingManager));
+        rebaseEngine.addWhitelist(address(this));
+    }
+
+    function enableAndApprove() internal {
+        token.approve(address(stakingManager), 1e30 ether);
+
+        stakingManager.enableStaking();
+        stakingManager.enableUnstaking();
+    }
+
+    function getAddr() public view returns (address) {
+        return address(this);
+    }
+
+    /**================================== WRAPPERS ==================================*/
+
+    function wrapSetStakingParams(
+        uint256 _ms,
+        uint256 _md,
+        uint32 _pd
     ) public {
         uint256 _minimumStakeDays = 1;
-        uint256 _minimumStakeAmount = 10 ether;
+        uint256 minimumStakeAmount = _ms;
+        uint256 maxDafi = _md;
         uint8 _rewardFee = 100;
+        uint256 programDuration = uint256(_pd);
 
-        db.setStakingParams(_minimumStakeDays, _minimumStakeAmount, _maxDAFI, _rewardFee, pd);
+        database.setStakingParams(_minimumStakeDays, minimumStakeAmount, maxDafi, _rewardFee, programDuration);
     }
 
     function wrapRebasePool() public {
-        rebaseEngine.rebasePool();     
+        rebaseEngine.rebasePool();
     }
 
+    function wrapStake(uint256 _amount) public {
+        stakingManager.stake(_amount);
+    }
+
+    function wrapClaim(bool partialClaim, uint256 _amount) public {
+        stakingManager.claimRewards(partialClaim, _amount);
+    }
+
+    function wrapUnstake(uint256 _amount) public {
+        database.getUserStake(address(this));
+        stakingManager.unstake(_amount);
+    }
+
+    function wrapGetWeights()
+        public
+        view
+        returns (
+            uint256 currPW,
+            uint256 currFW,
+            uint256 accPW,
+            uint256 accFW
+        )
+    {
+        currPW = rebaseEngine.currentPoolWeight();
+        currFW = rebaseEngine.currentFeeWeight();
+        accPW = database.getAccumulatedPoolWeight();
+        accFW = database.getAccumulatedFeeWeight();
+    }
+}
+
+contract PriceFeed is IPriceFeeds {
+    function getThePrice() external pure override returns (uint256 randomPriceFeed) {
+        randomPriceFeed = 159;
+    }
+}
+
+contract TVLFeed is ITVLFeeds {
+    function getTheTVL() external pure override returns (uint256 randomTVLFeed) {
+        randomTVLFeed = 278;
+    }
 }

@@ -1,9 +1,12 @@
 // SPDX-License-Identifier: GNU GPLv3
 pragma solidity 0.8.0;
 
-import "/home/jariruddin/BlockApex-Linux/dDAFI-testing/node_modules/openzeppelin-solidity/contracts/token/ERC20/IERC20.sol";
 import "/home/jariruddin/BlockApex-Linux/dDAFI-testing/node_modules/openzeppelin-solidity/contracts/security/ReentrancyGuard.sol";
 import "/home/jariruddin/BlockApex-Linux/dDAFI-testing/node_modules/openzeppelin-solidity/contracts/access/Ownable.sol";
+import "/home/jariruddin/BlockApex-Linux/dDAFI-testing/node_modules/openzeppelin-solidity/contracts/token/ERC20/IERC20.sol";
+// import "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol";
+// import "openzeppelin-solidity/contracts/security/ReentrancyGuard.sol";
+// import "openzeppelin-solidity/contracts/access/Ownable.sol";
 import "./interfaces/IStakingManager.sol";
 import "./TokenPool.sol";
 import "./interfaces/IPriceFeeds.sol";
@@ -47,8 +50,17 @@ contract StakingManagerV2 is IStakingManager, Ownable, ReentrancyGuard {
         _;
     }
 
-    constructor(IERC20 _stakingToken) {
+    // instrumentation in the constructor
+    constructor(IERC20 _stakingToken, StakingDatabase _database, IRebaseEngine _rebaseEngine, INetworkDemand _networkDemand, TokenPool _distributionPool) {
+        
         stakingToken = _stakingToken;
+
+        database = _database;
+        rebaseEngine = _rebaseEngine;
+        networkDemand = _networkDemand;
+        stakingPool = new TokenPool(_stakingToken);
+        stakingPool.addWhitelist(address(this));
+        distributionPool = _distributionPool;
     }
 
     function initialize(StakingDatabase _database, IRebaseEngine _rebaseEngine, INetworkDemand _networkDemand, TokenPool _distributionPool,

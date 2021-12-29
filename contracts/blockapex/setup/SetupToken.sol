@@ -6,8 +6,12 @@ import './TestERC20.sol';
 contract SetupToken {
     TestERC20 public token;
 
-    constructor(address mintTo) {
-        token = new TestERC20(mintTo, 1e18 ether);
+    constructor() {
+        token = new TestERC20();
+    }
+
+    function mintToAddr(address mintTo) public {
+        token._mint(mintTo, 1e20 ether);
     }
 
     function getBalanceOf(address sender) public view returns (uint256 bal) {
